@@ -16,10 +16,10 @@ RUN go mod download
 COPY . .
 
 # Build the Go app
-RUN go build -o main .
+RUN go build -o azurego .
 
 # Expose port 8080 to the outside world
  EXPOSE 8080
 
 # Command to run the executable
-CMD ["./main"]
+CMD ["./azurego"]
