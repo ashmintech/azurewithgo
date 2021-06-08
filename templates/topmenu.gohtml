@@ -1,0 +1,26 @@
+{{define "topmenu"}}
+
+ <header>
+      <div class="container">
+        <div class="logo col-md-6 col-sm-5 col-xs-8">
+          <a href="/"><img src="/home/images/Globo-Logo-white.svg" alt="logo" /></a><span class="text">MANIACALLY
+            TAKING TECH TO THE GLOBE</span>
+        </div>
+        <div class="right_section col-md-4 col-xs-12" style="color:white" ><br><h3 class=link>Welcome {{.LName}},{{.FName}}</h3>
+        <a href="/customer">Dashboard</a> | <a href="">Devices</a> | <a href="">Files</a> | <a href="">Profile</a> 
+
+        </div>
+      
+        <div class="sign-in col-md-2">
+          <span class="dvider"></span>
+          <div class="sign">
+            <a href="/logout"><img class="sign-in-img" src="/home/images/avatar.svg" alt="sign-in">Sign-off</a>
+      </div>
+         
+        </div>
+
+      </div>
+    </header>
+
+
+{{end}}

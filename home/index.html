@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Globomantics</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+  $(document).ready(function() {
+      
+      $.urlParam = function (name) {
+          var results = new RegExp('[\?&]' + name + '=([^&#]*)')
+                            .exec(window.location.search);
+          return (results !== null) ? results[1] || 0 : false;
+      }
+
+      $.n = $.urlParam('status');
+    
+      $("#testp").hide();
+      
+      if ($.n === "nosuccess") {
+        $("#testp").text("Login Failed");
+        $("#testp").show("slide", { direction: "up" }, 1000);
+      }
+  });
+</script>
+ <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+  <link href="css/style-home.css" rel="stylesheet">
+  <link rel="shortcut icon" type="image/x-icon" href="images/G.png" />
+</head>
+
+<body>
+  <div id="wrapper">
+
+    <header>
+      <div class="container">
+        <div class="logo col-md-5 col-sm-5 col-xs-8">
+          <a href="index.html"><img src="images/Globo-Logo-white.svg" alt="logo" /></a><span class="text">MANIACALLY
+            TAKING TECH TO THE GLOBE</span>
+        </div>
+ 
+        <div class="right_section col-md-5 col-xs-12">
+   
+        </div>
+
+        <div class="sign-in col-md-2">
+          <span class="dvider"></span>
+          <div class="sign">
+            <a href="/customer"><img class="sign-in-img" src="images/avatar.svg" alt="sign-in">Sign-in</a>
+        <!--
+            <a
+              href="https://ashmintechb2c.b2clogin.com/ashmintechb2c.onmicrosoft.com/oauth2/v2.0/authorize?p=B2C_1_signupsignin2&client_id=da02fccf-378f-4932-9c70-b722d022d0d1&nonce=defaultNonce&redirect_uri=http%3A%2F%2Flocalhost%3A8000%2Fcustomer&scope=openid&response_type=id_token&prompt=login"><img
+                class="sign-in-img" src="images/avatar.svg" alt="sign-in">
+              Customer<br> Sign-in</a>
+        -->
+        <p style="color:white;font-size: small;" id="testp">Login Failed</p>   
+      </div>
+         
+        </div>
+
+      </div>
+    </header>
+
+   
+    <section class="banner">
+      <img src="images/hero image.png" />
+      <div class="inner-content col-md-12">
+        <div class="container jumboContainer">
+          <div class=" col-md-8 middle">
+            <h1>THE FUTURE<br> <span>WAS FIVE MINUTES AGO</span>.</h1>
+
+            <p>We were there and it is going to be epic</p>
+          </div>
+
+          <div class="content-right col-md-4">
+            <h3>FUTURE</h3><span>CONFERENCE</span>
+            <div class="text-center">
+              <button type="button" class="btn btn-primary btn-lg">SIGN UP TODAY</button>
+            </div>
+            <p>Tickets are selling fast
+              get yours today and be
+              there in the future</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec_include">
+      <div class="container">
+
+
+        <div class="row">
+          <div class="col-xs-12 col-sm-4 col-md-4 adj_text">
+
+
+            <h3>DARK ENERGY</h3>
+            <p>BRIGHTENS THE WORLD</p>
+            <img src="images/Bitmap.png" alt="Public Adjuster" />
+
+            <div class="read-more-btn">
+              <a href="#" class="btn-oval">Learn More</a>
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-4 col-md-4 adj_text">
+            <h3>ROBOTICS</h3>
+            <p>THEY ARE HERE AND THEY PLAY</p>
+            <img src="images/Bitmap(1).png" alt="Public" />
+            <div class="read-more-btn">
+              <a href="#" class="btn-oval">Learn More</a>
+            </div>
+
+          </div>
+          <div class="col-xs-12 col-sm-4 col-md-4 adj_text">
+            <h3>STRANGERS RISE</h3>
+            <p>ASCENSION GOES TECHNICAL</p>
+            <img src="images/shutterstock_211091626.png" alt="Public" />
+            <div class="read-more-btn">
+              <a href="#" class="btn-oval">Learn More</a>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <footer>
+      <div class="container">
+        <div class="main-footer col-md-12 col-xs-12">
+          <div class="foter-logo col-md-3 col-sm-3 col-xs-2">
+            <a href="index.html"><img class="desktop" src="images/Globo-Logo-white-footer.svg"><img class="mobileImg"
+                src="images/G.png">
+            </a>
+          </div>
+          <div class="links col-md-5 col-md-5 col-xs-10">
+            <ul class="quick-links col-md-4 col-xs-6">
+
+              <li><a href="#">Our Story</a></li>
+              <li><a href="#">Brands</a></li>
+              <li><a href="#">Robotics</a></li>
+              <li><a href="#">Media</a></li>
+              <li><a href="#">Support</a></li>
+            </ul>
+            <ul class="quick-links second-row col-md-4 col-xs-6">
+
+              <li><a href="#">Careers</a></li>
+              <li><a href="#">Privacy Policy</a></li>
+              <li><a href="#">Media Inquiries</a></li>
+              <li><a href="#">Help</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!---container-->
+      <div class="video-sec col-md-4 col-sm-12 col-xs-12">
+        <h1 class="video-heading text-center"><img src="images/pluralsight-white.png"></h1>
+        <span class="border"></span>
+        <p class="footer-p">This site is created for demonstrative purposes only and does not offer any real products or
+          services.
+        <p>
+
+
+
+
+      </div>
+
+
+    </footer>
+
+
+
+
+
+
+
+
+  </div>
+  <!---------- End of Wrapper ----------->
+
+
+
+  <script src="js/jquery.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+ </body>
+
+</html>
