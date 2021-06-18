@@ -44,10 +44,6 @@ var customerList = []*Customer{
 	},
 }
 
-func GetCustomers() []*Customer {
-	return customerList
-}
-
 func GetCustomer(custID string) (*Customer, bool) {
 
 	for _, b := range customerList {
