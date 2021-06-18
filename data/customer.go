@@ -16,34 +16,46 @@ type Customer struct {
 	CreationDate string `json:"creation"`
 }
 
-var dummyCust = Customer{
-	CustID:       "DummyID",
-	FName:        "Dummy",
-	LName:        "Name",
-	Address:      "Pluto",
-	Phone:        "(123)456 7890",
-	Email:        "Dummy@Email",
-	SubType:      "Not sure",
-	Active:       false,
-	CreationDate: "January 1, 1900",
-}
-
 // Customers is a collection of customer
 type Customers []*Customer
 
-var customerList = Customers{}
+var customerList = []*Customer{
+	{
+		CustID:       "32891c71-4b55-401f-a819-31950f331b5b",
+		FName:        "Ashish",
+		LName:        "Minocha",
+		Address:      "Canada",
+		Phone:        "(123) 456-7890",
+		Email:        "minocha_ashish@hotmail.com",
+		SubType:      "Premium",
+		Active:       true,
+		CreationDate: "Apr 10, 2021",
+	},
+	{
+		CustID:       "custid2",
+		FName:        "Ashish",
+		LName:        "Minocha",
+		Address:      "USA",
+		Phone:        "(987) 654-3210",
+		Email:        "ashmintech@outlook.com",
+		SubType:      "Standard",
+		Active:       false,
+		CreationDate: "Mar 2 2021",
+	},
+}
 
 func GetCustomers() []*Customer {
 	return customerList
 }
 
-func GetCustomer(custID string) *Customer {
+func GetCustomer(custID string) (*Customer, bool) {
+
 	for _, b := range customerList {
 		if b.CustID == custID {
-			return b
+			return b, true
 		}
 	}
-	return &dummyCust
+	return nil, false
 }
 
 func findCustomer(custID string) bool {

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+{{template "head"}}
+<body>
+{{$c := .Cust}}
+{{template "topmenu" $c}}
+
+<div class="table-responsive-sm col-md-6">
+<h3>Device Details</h3>
+
+<table class="table table-hover table-sm">
+
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Device Name</th>
+      <th scope="col">Device Type</th>
+      <th scope="col">Active</th>
+      <th scope="col">Creation Date</th>
+     
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      {{$d := .Dev}}
+      <th scope="row">{{$d.DeviceName}}</th>
+      <td>{{$d.DeviceType}}</td>
+    
+      <td>
+          {{$d.DeviceStatus}}
+          {{if eq $d.DeviceStatus "Active"}}
+            <a href="/customer/devicestatus/{{$d.DeviceID}}"><input type="button" class="btn btn-danger btn-sm" value="Deactivate"></a>
+          {{else}}
+            <a href="/customer/devicestatus/{{$d.DeviceID}}"><input type="button" class="btn btn-primary btn-sm" value="Activate"></a>
+          {{end}}
+      </td>
+
+      <td>{{$d.DeviceCreationDate}}</td>
+     
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="table-responsive-sm col-md-6">
+<h3>Customer</h3>
+   
+
+   
+{{if $c}}
+
+
+<table class="table table-hover table-sm">
+
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Customer Name</th>
+      <th scope="col">Subscription Type</th>
+      <th scope="col">Active</th>
+      <th scope="col">Member Since</th>
+     
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      
+      <th scope="row">{{$c.LName}}, {{$c.FName}} </th>
+      <td>{{$c.SubType}}</td>
+      {{if eq $c.Active true}} 
+        <td>Yes</td>
+      {{else}}
+        <td>No</td>
+      {{end}}
+     
+      <td>{{$c.CreationDate}}</td>
+     
+    </tr>
+  </tbody>
+</table>
+
+
+
+{{else}}
+<h5>Customer Not Found</h5>
+{{end}}
+<br>
+</div>
+
+{{if eq $d.DeviceStatus "Active"}}
+<script type="text/javascript">
+       setInterval(refreshIframe1, 20000);
+       function refreshIframe1() {
+           $("#devicedataframe")[0].src = $("#devicedataframe")[0].src;
+       }
+   </script>
+   <iframe src="/customer/devicedata/{{$d.DeviceID}}" marginwidth="0" marginheight="0" width="800" height="400" scrolling="no" frameborder=0 name="devicedataframe" id="devicedataframe"></iframe>
+  
+{{else}}
+   <div class="table-responsive-sm col-md-4">
+    <h3>Device is not active.</h3>
+    </div>
+{{end}}
+
+
+
+
+</body>
+
+</html>

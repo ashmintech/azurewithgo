@@ -49,8 +49,10 @@ func init() {
 	// OpenID Configuration: https://ashmintech.b2clogin.com/ashmintech.onmicrosoft.com/B2C_1_signinsignup/v2.0/.well-known/openid-configuration
 	// Keys: https://ashmintech.b2clogin.com/ashmintech.onmicrosoft.com/B2C_1_signinsignup/discovery/v2.0/keys
 
+	go data.RunEventHubListener()
 }
 
+/*
 func Customer(w http.ResponseWriter, r *http.Request) {
 
 	custID := r.URL.Query().Get("cust")
@@ -66,6 +68,7 @@ func Customer(w http.ResponseWriter, r *http.Request) {
 		log.Fatalln("Not able to call the template", err)
 	}
 }
+*/
 
 func Middleware(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
@@ -145,7 +148,6 @@ func Login(w http.ResponseWriter, r *http.Request) {
 	http.Redirect(w, r, "/customer", http.StatusSeeOther)
 }
 
-
 func Logout(w http.ResponseWriter, r *http.Request) {
 
 	c = &http.Cookie{
@@ -159,4 +161,46 @@ func Logout(w http.ResponseWriter, r *http.Request) {
 	q.Add("post_logout_redirect_uri", logoutUrl)
 	u.RawQuery = q.Encode()
 	http.Redirect(w, r, u.String(), http.StatusSeeOther)
+}
+
+func findDevices4Customer(c string) data.Devices {
+	return data.GetDevices4Customer(c)
+}
+
+func existCustomer(c string) (*data.Customer, bool) {
+	return data.GetCustomer(c)
+}
+
+func CustomerDetails(w http.ResponseWriter, r *http.Request) {
+
+	var d data.Devices
+	var c *data.Customer
+
+	custID := r.URL.Query().Get("cust")
+
+	_, err := r.Cookie("session")
+
+	if err == http.ErrNoCookie {
+		log.Println("No cookie Found. Redirecting to home page")
+		http.Redirect(w, r, "/home", http.StatusSeeOther)
+		return
+	}
+
+	c, found := existCustomer(custID)
+
+	if !found {
+		http.Redirect(w, r, "/home", http.StatusSeeOther)
+		return
+	}
+
+	d = findDevices4Customer(c.CustID)
+
+	type sendData struct {
+		Dev  data.Devices
+		Cust *data.Customer
+	}
+
+	if err := tpl.ExecuteTemplate(w, "customerdetails.gohtml", sendData{d, c}); err != nil {
+		log.Fatalln("Not able to call the template", err)
+	}
 }

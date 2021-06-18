@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+{{template "head"}}
+<body>
+
+<div class="table-responsive-sm col-md-6">
+  <h3>Device Data</h3>
+ {{if .}}
+ {{range .}}
+
+      <div>
+        <button type="button" class="btn btn-success btn-lg">
+        Date: <span class="badge badge-light">{{.DateTime}}</span>
+        </button>
+      </div>
+      <br>
+      <p>Average Temperature Values every minute</p>
+      <div>
+        <button type="button" class="btn btn-info" disabled>
+        Fridge Temp: <span class="badge badge-light">{{.AvgFridge}}&#176; F </span>
+        </button>
+        <span>Normal Operating Range 33&#176; to 38&#176; F</span>
+      </div>
+      <br>
+      <div>
+        <button type="button" class="btn btn-info" disabled>
+        Freezer Temp: <span class="badge badge-dark">{{.AvgFreezer}}&#176; F</span>
+        </button>
+        <span>Normal Operating Range -10&#176; to 0&#176; F</span>
+      </div> 
+
+ {{end}}
+ {{else}}
+ <br>
+      <p>Not able to receive Sensor Data or it is initializing</p>
+ {{end}}
+</div>
+
+
+  </body>
+  </html> 
