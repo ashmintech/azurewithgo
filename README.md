@@ -17,6 +17,7 @@
 
 - Azure B2C
 - Azure App Services
+- Azure Front Door
 
 ## Module 4
 
