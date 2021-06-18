@@ -13,6 +13,7 @@
 
 >Change the LOGIN and LOGOUT REDIRECT urls to the published Web name 
 
+
 ### Azure Services
 
 - Azure B2C
@@ -28,7 +29,9 @@
 - export AZUREB2C_LOGIN_REDIRECT_URL=http://localhost:8080/login
 - export AZUREB2C_LOGOUT_REDIRECT_URL=http://localhost:8080/home
 
+
 >Change the LOGIN and LOGOUT REDIRECT urls to the published Web name 
+
 
 ### Connection String
 
