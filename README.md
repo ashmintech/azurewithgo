@@ -64,4 +64,3 @@
 ### Azure Services
 
 - Azure Cosmos DB
-- Azure Key Vault
