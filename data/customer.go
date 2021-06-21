@@ -5,7 +5,7 @@ import (
 )
 
 type Customer struct {
-	CustomerID       string `json:"customerid"`
+	CustomerID   string `json:"customerid"`
 	FName        string `json:"fname"`
 	LName        string `json:"lname"`
 	Address      string `json:"address"`
@@ -21,7 +21,7 @@ type Customers []*Customer
 
 var customerList = []*Customer{
 	{
-		CustomerID:       "32891c71-4b55-401f-a819-31950f331b5b",
+		CustomerID:   "32891c71-4b55-401f-a819-31950f331b5b",
 		FName:        "Ashish",
 		LName:        "Minocha",
 		Address:      "Canada",
@@ -32,7 +32,7 @@ var customerList = []*Customer{
 		CreationDate: "Apr 10, 2021",
 	},
 	{
-		CustomerID:       "custid2",
+		CustomerID:   "custid2",
 		FName:        "Ashish",
 		LName:        "Minocha",
 		Address:      "USA",

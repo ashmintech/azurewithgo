@@ -52,24 +52,6 @@ func init() {
 	go data.RunEventHubListener()
 }
 
-/*
-func Customer(w http.ResponseWriter, r *http.Request) {
-
-	custID := r.URL.Query().Get("cust")
-
-	_, err := r.Cookie("session")
-
-	if err == http.ErrNoCookie {
-		log.Println("No cookie Found. Redirecting to home page")
-		http.Redirect(w, r, "/home", http.StatusSeeOther)
-		return
-	}
-	if err := tpl.ExecuteTemplate(w, "customer.gohtml", data.GetCustomer(custID)); err != nil {
-		log.Fatalln("Not able to call the template", err)
-	}
-}
-*/
-
 func Middleware(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 
@@ -125,7 +107,7 @@ func Login(w http.ResponseWriter, r *http.Request) {
 	}
 
 	cust := &data.Customer{
-		CustomerID:       custID,
+		CustomerID:   custID,
 		FName:        fmt.Sprintf("%v", custClaims["given_name"]),
 		LName:        fmt.Sprintf("%v", custClaims["family_name"]),
 		Address:      fmt.Sprintf("%v", custClaims["country"]),
