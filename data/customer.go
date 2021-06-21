@@ -5,7 +5,7 @@ import (
 )
 
 type Customer struct {
-	CustID       string `json:"customerid"`
+	CustomerID       string `json:"customerid"`
 	FName        string `json:"fname"`
 	LName        string `json:"lname"`
 	Address      string `json:"address"`
@@ -21,7 +21,7 @@ type Customers []*Customer
 
 var customerList = []*Customer{
 	{
-		CustID:       "32891c71-4b55-401f-a819-31950f331b5b",
+		CustomerID:       "32891c71-4b55-401f-a819-31950f331b5b",
 		FName:        "Ashish",
 		LName:        "Minocha",
 		Address:      "Canada",
@@ -32,7 +32,7 @@ var customerList = []*Customer{
 		CreationDate: "Apr 10, 2021",
 	},
 	{
-		CustID:       "custid2",
+		CustomerID:       "custid2",
 		FName:        "Ashish",
 		LName:        "Minocha",
 		Address:      "USA",
@@ -47,7 +47,7 @@ var customerList = []*Customer{
 func GetCustomer(custID string) (*Customer, bool) {
 
 	for _, b := range customerList {
-		if b.CustID == custID {
+		if b.CustomerID == custID {
 			return b, true
 		}
 	}
@@ -56,7 +56,7 @@ func GetCustomer(custID string) (*Customer, bool) {
 
 func findCustomer(custID string) bool {
 	for _, c := range customerList {
-		if c.CustID == custID {
+		if c.CustomerID == custID {
 			return true
 		}
 	}
@@ -64,7 +64,7 @@ func findCustomer(custID string) bool {
 }
 
 func AddCustomer(p *Customer) (bool, error) {
-	if !findCustomer(p.CustID) {
+	if !findCustomer(p.CustomerID) {
 		customerList = append(customerList, p)
 	} else {
 		return false, errors.New("Customer already exists")

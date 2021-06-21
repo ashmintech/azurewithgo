@@ -125,7 +125,7 @@ func Login(w http.ResponseWriter, r *http.Request) {
 	}
 
 	cust := &data.Customer{
-		CustID:       custID,
+		CustomerID:       custID,
 		FName:        fmt.Sprintf("%v", custClaims["given_name"]),
 		LName:        fmt.Sprintf("%v", custClaims["family_name"]),
 		Address:      fmt.Sprintf("%v", custClaims["country"]),
@@ -193,7 +193,7 @@ func CustomerDetails(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	d = findDevices4Customer(c.CustID)
+	d = findDevices4Customer(c.CustomerID)
 
 	type sendData struct {
 		Dev  data.Devices

@@ -30,7 +30,7 @@ func Devices(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	d = findDevices4Customer(c.CustID)
+	d = findDevices4Customer(c.CustomerID)
 
 	type sendData struct {
 		Dev  data.Devices
