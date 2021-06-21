@@ -30,7 +30,7 @@ func Devices(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	d = findDevices4Customer(c.CustID)
+	d = findDevices4Customer(c.CustomerID)
 
 	type sendData struct {
 		Dev  data.Devices
@@ -48,23 +48,6 @@ func existDevice(d string) (*data.Device, bool) {
 
 func findCustomer4Device(d string) (*data.Customer, bool) {
 	return data.GetCustomer4Device(d)
-}
-
-func DeviceToggleStatus(w http.ResponseWriter, r *http.Request) {
-
-	devID := path.Base(r.URL.Path)
-
-	d, ok := data.ToggleDeviceStatus(devID)
-
-	if !ok {
-		http.Redirect(w, r, "/customer/devices", http.StatusSeeOther)
-		return
-	} else {
-		http.Redirect(w, r, "/customer/devices/"+d.DeviceID, http.StatusSeeOther)
-		return
-
-	}
-
 }
 
 func DeviceDetails(w http.ResponseWriter, r *http.Request) {

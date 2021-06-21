@@ -28,11 +28,6 @@
     
       <td>
           {{$d.DeviceStatus}}
-          {{if eq $d.DeviceStatus "Active"}}
-            <a href="/customer/devicestatus/{{$d.DeviceID}}"><input type="button" class="btn btn-danger btn-sm" value="Deactivate"></a>
-          {{else}}
-            <a href="/customer/devicestatus/{{$d.DeviceID}}"><input type="button" class="btn btn-primary btn-sm" value="Activate"></a>
-          {{end}}
       </td>
 
       <td>{{$d.DeviceCreationDate}}</td>
