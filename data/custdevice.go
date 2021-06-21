@@ -12,7 +12,7 @@ type C2D struct {
 }
 
 const (
-	C2DCollName = "test"
+	C2DCollName = "cust2device"
 )
 
 func GetCustomer4Device(d string) (*Customer, bool) {

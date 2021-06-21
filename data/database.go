@@ -11,8 +11,8 @@ var mongoClient *mgo.Session
 var err error
 
 const (
-	MongoDBName        = "goDB"
-	CosmosDBConnString = "mongodb://gocosmos:hzD974FS34V4oUVaA47Pttbc8kYyo8AzNLSWQivZ2G8B9456hbSHOsAiB77rr1doXKbMoVdppQGE9ba81CJ2Wg==@gocosmos.mongo.cosmos.azure.com:10255/?ssl=true&replicaSet=globaldb&maxIdleTimeMS=120000&appName=@gocosmos@"
+	MongoDBName        = "godb"
+	CosmosDBConnString = "mongodb://gowithcosmos:8Va49WtynpHjpVyvwhiwcMTtuRVDt5Vbv9STwpiU7Hx28LMAeLIVl7CwBz8MEumiTA87r2ylMUnHjat0cI5dRg==@gowithcosmos.mongo.cosmos.azure.com:10255/?ssl=true&replicaSet=globaldb&maxIdleTimeMS=120000&appName=@gowithcosmos@"
 )
 
 func init() {
