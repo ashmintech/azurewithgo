@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+{{template "head"}}
+<body>
+{{$c := .Cust}}
+{{template "topmenu" $c }}
+  
+ <div class="table-responsive-sm col-md-10">
+<h3>Files</h3>
+<table class="table table-hover">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">File Name</th>
+      <th scope="col">File Desc</th>
+      <th scope="col">File Type</th>
+      <th scope="col">Date</th>
+      <th scope="col">Download</th>
+
+    </tr>
+  </thead>
+  {{$f := .Files}}
+  {{if $f}}
+  <tbody>
+ 
+  {{range $f}}
+    <tr>
+      <th scope="row">{{.FileName}}</th>
+      <td>{{.FileDesc}}</td>
+      <td>{{.FileType}}</td>
+      <td>{{.FileDate}}</td>
+     <td><a href="{{.FilePath}}" target="_blank"><button type="button" class="btn btn-info btn-sm">
+   Download
+</button></a></td>
+    </tr>
+  {{end}} 
+   
+  </tbody>
+  {{else}}
+  <p>No Files Available</p>
+  {{end}}
+</table>
+</div>
+ 
+</body>
+</html>

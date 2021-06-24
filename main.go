@@ -21,12 +21,14 @@ func main() {
 	r.HandleFunc("/logout", cont.Logout)
 	r.HandleFunc("/login", cont.Login)
 
-	cu := r.Methods(http.MethodGet).Subrouter()
+	cu := r.Methods(http.MethodGet, http.MethodPost).Subrouter()
 	cu.HandleFunc("/customer", cont.CustomerDetails)
 	cu.HandleFunc("/customer/devices", cont.Devices)
 	cu.HandleFunc("/customer/devices/{id}", cont.DeviceDetails)
 	cu.HandleFunc("/customer/devicedata/{id}", cont.DeviceData)
-
+	cu.HandleFunc("/customer/profile", cont.EditCustomer)
+	cu.HandleFunc("/customer/customerprofile", cont.CustomerProfile).Methods(http.MethodPost)
+	cu.HandleFunc("/customer/files", cont.Files)
 	cu.Use(cont.Middleware)
 
 	// Static Files

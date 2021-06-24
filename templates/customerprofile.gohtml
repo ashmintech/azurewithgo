@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+{{template "head"}}
+<body>
+ {{$c := .}}
+{{template "topmenu" $c }}
+
+<div class="table-responsive-sm col-md-8">
+<h3>Edit Customer Profile</h3>
+<form  enctype="multipart/form-data" action="/customer/customerprofile" method="post">
+<table class="table table-hover table-sm">
+  
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Customer Name</th>
+      <th scope="col">Customer Address</th>
+      <th scope="col">Customer Email</th>
+      <th scope="col">Customer Phone</th>
+      <th scope="col">Subscription Type</th>
+      <th scope="col">Member Since </th>
+      <th scope="col">Active</th>
+     
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+    
+      <th scope="row">{{$c.LName}}, {{$c.FName}}</th>
+      <td>{{$c.Address}}</td>
+      <td>{{$c.Email}}</td>
+      {{if eq $c.Phone "(---)--- ----"}}
+          <td><input type="tel" id="phone" name="phone" placeholder="123-456-7890" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required></td>
+      {{else}}
+        <td><input type="tel" id="phone" name="phone" placeholder="123-456-7890" value= "{{$c.Phone}}" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required></td>
+      {{end}}
+
+
+      <td>
+      <select name="subtype">
+      {{if eq $c.SubType "Premium"}}
+        <option value="{{$c.SubType}}" selected>{{$c.SubType}}</option>
+        <option value="Standard">Standard</option>
+      {{else}}
+        <option value="Premium">Premium</option>
+        <option value="{{$c.SubType}}" selected>{{$c.SubType}}</option>
+      {{end}}  
+      </select>
+    </td>
+ 
+      <td>{{$c.CreationDate}}</td>
+      {{if eq $c.Active true}} 
+        <td>Yes</td>
+      {{else}}
+        <td>No</td>
+      {{end}}
+            
+    </tr>
+  </tbody>
+</table>
+<input type="hidden" name="custid" value="{{$c.CustomerID}}">
+<input type="submit" class="btn btn-primary">
+</form>
+</div>
+
+
+</body>
+</html>

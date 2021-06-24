@@ -29,9 +29,11 @@ func init() {
 	cSecret = os.Getenv("AZURE_CLIENT_SECRET")
 	loginUrl = os.Getenv("AZUREB2C_LOGIN_REDIRECT_URL")
 	logoutUrl = os.Getenv("AZUREB2C_LOGOUT_REDIRECT_URL")
+	aName := os.Getenv("AZURE_STORAGE_NAME")
+	aKey := os.Getenv("AZURE_STORAGE_KEY")
 
 	// If any of the value is empty
-	if cID == "" || cSecret == "" || loginUrl == "" || logoutUrl == "" {
+	if cID == "" || cSecret == "" || loginUrl == "" || logoutUrl == "" || aName == "" || aKey == "" {
 		log.Fatalln("Not able to set environmental variables")
 	}
 
@@ -186,4 +188,46 @@ func CustomerDetails(w http.ResponseWriter, r *http.Request) {
 	if err := tpl.ExecuteTemplate(w, "customerdetails.gohtml", sendData{d, c}); err != nil {
 		log.Fatalln("Not able to call the template", err)
 	}
+}
+
+func EditCustomer(w http.ResponseWriter, r *http.Request) {
+
+	custID := r.URL.Query().Get("cust")
+
+	_, err := r.Cookie("session")
+
+	if err == http.ErrNoCookie {
+		log.Println("No cookie Found. Redirecting to home page")
+		http.Redirect(w, r, "/home", http.StatusSeeOther)
+		return
+	}
+
+	c, found := existCustomer(custID)
+
+	if !found {
+		http.Redirect(w, r, "/customer", http.StatusSeeOther)
+		return
+	}
+
+	if err := tpl.ExecuteTemplate(w, "customerprofile.gohtml", c); err != nil {
+		log.Fatalln("Not able to call the template", err)
+	}
+
+}
+
+func CustomerProfile(w http.ResponseWriter, r *http.Request) {
+
+	custID := r.FormValue("custid")
+
+	c, found := existCustomer(custID)
+
+	if !found {
+		http.Redirect(w, r, "/customer", http.StatusSeeOther)
+		return
+	}
+
+	_ = data.PutCustomer(c, r.FormValue("phone"), r.FormValue("subtype"))
+
+	http.Redirect(w, r, "/customer", http.StatusSeeOther)
+
 }
