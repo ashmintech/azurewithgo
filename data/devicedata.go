@@ -48,11 +48,9 @@ func GetDeviceData(devID string, day int) []sendDeviceData {
 	return sendData
 }
 
-const (
-	EventHubEndPoint = "Endpoint=sb://goeventhubns.servicebus.windows.net/;SharedAccessKeyName=sendreceive;SharedAccessKey=rP4Lfj2o4hepWWqU9TYkixXines4PSa4emsgkYvfePg=;EntityPath=goeventhub"
-)
-
 func RunEventHubListener() {
+
+	EventHubEndPoint := os.Getenv("EVENTHUB_CONN_STRING")
 
 	ctx, cancel := context.WithTimeout(context.Background(), 20*time.Second)
 	defer cancel()

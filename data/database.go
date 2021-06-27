@@ -2,6 +2,7 @@ package data
 
 import (
 	"log"
+	"os"
 
 	"github.com/Azure/azure-sdk-for-go/services/cosmos-db/mongodb"
 	"github.com/globalsign/mgo"
@@ -11,13 +12,18 @@ var mongoClient *mgo.Session
 var err error
 
 const (
-	MongoDBName        = "godb"
-	CosmosDBConnString = "mongodb://gowithcosmos:8Va49WtynpHjpVyvwhiwcMTtuRVDt5Vbv9STwpiU7Hx28LMAeLIVl7CwBz8MEumiTA87r2ylMUnHjat0cI5dRg==@gowithcosmos.mongo.cosmos.azure.com:10255/?ssl=true&replicaSet=globaldb&maxIdleTimeMS=120000&appName=@gowithcosmos@"
+	MongoDBName = "godb"
 )
 
 func init() {
 	// Setting up MongoDB Client
 	log.Println("Setting up Mongo Client")
+
+	CosmosDBConnString := os.Getenv("COSMOSDB_CONN_STRING")
+	if CosmosDBConnString == "" {
+		log.Fatalln("Database connection string empty")
+	}
+
 	mongoClient, err = mongodb.NewMongoDBClientWithConnectionString(CosmosDBConnString)
 
 	if err != nil {
