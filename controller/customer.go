@@ -29,9 +29,11 @@ func init() {
 	cSecret = os.Getenv("AZURE_CLIENT_SECRET")
 	loginUrl = os.Getenv("AZUREB2C_LOGIN_REDIRECT_URL")
 	logoutUrl = os.Getenv("AZUREB2C_LOGOUT_REDIRECT_URL")
+	dbkey := os.Getenv("COSMOSDB_CONN_STRING")
+	eventKey := os.Getenv("EVENTHUB_CONN_STRING")
 
 	// If any of the value is empty
-	if cID == "" || cSecret == "" || loginUrl == "" || logoutUrl == "" {
+	if cID == "" || cSecret == "" || loginUrl == "" || logoutUrl == "" || dbkey == "" || eventKey == "" {
 		log.Fatalln("Not able to set environmental variables")
 	}
 
